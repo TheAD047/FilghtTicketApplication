@@ -4,38 +4,37 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-center text-light">Create A Flight</h1>
 
-<h4>Flight</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-info"></div>
             <div class="form-group">
-                <label asp-for="airlineName" class="control-label"></label>
+                <label asp-for="airlineName" class="control-label text-light"></label>
                 <input asp-for="airlineName" class="form-control" />
-                <span asp-validation-for="airlineName" class="text-danger"></span>
+                <span asp-validation-for="airlineName" class="text-info"></span>
             </div>
             <div class="form-group">
-                <label asp-for="departureDate" class="control-label"></label>
+                <label asp-for="departureDate" class="control-label text-light"></label>
                 <input asp-for="departureDate" class="form-control" />
-                <span asp-validation-for="departureDate" class="text-danger"></span>
+                <span asp-validation-for="departureDate" class="text-info"></span>
             </div>
             <div class="form-group">
-                <label asp-for="landingTime" class="control-label"></label>
+                <label asp-for="landingTime" class="control-label text-light"></label>
                 <input asp-for="landingTime" class="form-control" />
-                <span asp-validation-for="landingTime" class="text-danger"></span>
+                <span asp-validation-for="landingTime" class="text-info"></span>
             </div>
             <div class="form-group">
-                <label asp-for="departureFrom" class="control-label"></label>
+                <label asp-for="departureFrom" class="control-label text-light"></label>
                 <input asp-for="departureFrom" class="form-control" />
-                <span asp-validation-for="departureFrom" class="text-danger"></span>
+                <span asp-validation-for="departureFrom" class="text-info"></span>
             </div>
             <div class="form-group">
-                <label asp-for="arrivalAt" class="control-label"></label>
+                <label asp-for="arrivalAt" class="control-label text-light"></label>
                 <input asp-for="arrivalAt" class="form-control" />
-                <span asp-validation-for="arrivalAt" class="text-danger"></span>
+                <span asp-validation-for="arrivalAt" class="text-info"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

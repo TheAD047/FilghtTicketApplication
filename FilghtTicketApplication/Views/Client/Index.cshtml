@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FilghtTicketApplication.Models.Flight>
+
+@{
+    ViewData["Title"] = "Available Flights";
+}
+
+<h1 class="text-center text-light">See Available Flights</h1>
+
+<div class="container">
+    <form class="form">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control bg-dark text-light" id="From" name="From" placeholder="From:" />
+            </div>
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control bg-dark text-light" id="To" name="To" placeholder="To:" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-content: center;">Search</button>
+    </form>
+</div>
+
+
+@foreach(var item in Model) {
+    <hr class="text-light">
+    <div class="card bg-dark rounded-pill" id="flight-view-client" style="border-color:aliceblue;">
+        <a asp-controller="Client" asp-action="Checkout" class="card-body rounded-pill" style="width: inherit; text-decoration: none;">
+                <h2 class="card-title text-warning">@Html.DisplayFor(modelItem => item.airlineName)</h2>
+            <div class="row">
+                <p class="col-md-6 text-info">From: @Html.DisplayFor(modelItem => item.departureFrom)</p>
+                <p class="col-md-6 text-info">Departure: @Html.DisplayFor(modelItem => item.departureDate)</p>
+            </div>
+            <div class="row">
+                <p class="col-md-6 text-info">To: @Html.DisplayFor(modelItem => item.arrivalAt)</p>
+                <p class="col-md-6 text-info">Arrival: @Html.DisplayFor(modelItem => item.landingTime)</p>
+            </div>
+        </a>
+    </div>
+}
+<hr class="text-light">
+

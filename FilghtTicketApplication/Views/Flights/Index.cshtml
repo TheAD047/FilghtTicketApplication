@@ -4,54 +4,56 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center text-light">Flights</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.airlineName)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.departureDate)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.landingTime)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.departureFrom)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.arrivalAt)
             </th>
-            <th></th>
+            <th class="text-light">
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="text-info">
                 @Html.DisplayFor(modelItem => item.airlineName)
             </td>
-            <td>
+            <td class="text-info">
                 @Html.DisplayFor(modelItem => item.departureDate)
             </td>
-            <td>
+            <td class="text-info">
                 @Html.DisplayFor(modelItem => item.landingTime)
             </td>
-            <td>
+            <td class="text-info">
                 @Html.DisplayFor(modelItem => item.departureFrom)
             </td>
-            <td>
+            <td class="text-info">
                 @Html.DisplayFor(modelItem => item.arrivalAt)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.flightID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.flightID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.flightID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.flightID" class="btn btn-primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.flightID" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.flightID" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
