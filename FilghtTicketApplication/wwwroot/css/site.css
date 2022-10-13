@@ -40,15 +40,15 @@ td{
     color: aliceblue;
 }
 
-.table-hover{
+.table{
     background-color: darkslategrey;
 }
 
-
-#flights{
-    border-color: aliceblue;
-    border-radius: 3rem;
+tbody > tr:hover {
+    background-color: #343a40;
 }
+
+
 
 label {
     color:aliceblue;
@@ -57,4 +57,34 @@ label {
 .form-control {
     background-color: darkslategrey;
     color: aliceblue;
+}
+
+#cardBody, #flightCard {
+    border-color: aliceblue;
+    border-radius: 3rem;
+    width: inherit;
+}
+
+#flightCard:hover{
+    background-color: darkslategray;
+}
+
+table.sortable th:hover {
+    cursor: pointer;
+}
+
+.sorttable_nosort {
+    cursor: default !important;
+}
+
+.btn-info:hover {
+    background-color: lawngreen;
+}
+
+.btn-primary:hover{
+    background-color: mediumblue;
+}
+
+btn-danger:hover {
+    background-color: #180000;
 }
