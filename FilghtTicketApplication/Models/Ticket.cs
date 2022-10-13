@@ -9,6 +9,8 @@ namespace FilghtTicketApplication.Models
         [Required]
         public int flightID { get; set; }
 
+        public Flight? flight { get; set; }
+
         [Required]
         public int seatID { get; set; }
 

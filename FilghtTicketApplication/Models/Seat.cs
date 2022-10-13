@@ -1,19 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FilghtTicketApplication.Models
+﻿namespace FilghtTicketApplication.Models
 {
     public class Seat
     {
         public int seatID { get; set; }
 
-        [Required]
         public int flightID { get; set; }
 
-        [Required]
+        public Flight? Flight { get; set; }
+
         public int seatNum { get; set; }
 
-        [Required]
-        public string? seatRow { get; set; }
+        public String? seatRow { get; set; }
 
+        public Boolean isBooked { get; set; }
     }
 }

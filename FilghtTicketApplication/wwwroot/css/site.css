@@ -13,6 +13,48 @@ html {
   min-height: 100%;
 }
 
+
+th {
+    color:aliceblue;
+
+}
+
 body {
   margin-bottom: 60px;
+}
+
+a{
+    text-decoration: none;
+    color:aliceblue;
+}
+
+h1, h2, h4, p {
+    color: aliceblue;
+}
+
+dd, dt{
+    color:aquamarine;
+}
+
+td{
+    color: aliceblue;
+}
+
+.table-hover{
+    background-color: darkslategrey;
+}
+
+
+#flights{
+    border-color: aliceblue;
+    border-radius: 3rem;
+}
+
+label {
+    color:aliceblue;
+}
+
+.form-control {
+    background-color: darkslategrey;
+    color: aliceblue;
 }

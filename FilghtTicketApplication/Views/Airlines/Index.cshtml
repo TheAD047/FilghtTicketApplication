@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FilghtTicketApplication.Models.Airline>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Index</h1>
+
+<br />
+
+<p class="text-center"> 
+    <a asp-action="Create" class="btn btn-primary">Create New</a> | 
+    <a asp-controller="Flights" asp-action="Index" class="btn btn-primary">Flights</a>
+</p>
+
+<br />
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="text-center">
+            <th>
+                Airline Name
+            </th>
+            <th>
+                Email Address
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.airlineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.airlineEmail)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.airlineID" class="btn btn-primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.airlineID" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.airlineID" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

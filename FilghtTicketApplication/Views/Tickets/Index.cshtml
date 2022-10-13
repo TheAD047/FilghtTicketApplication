@@ -4,44 +4,56 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Ticket Repo</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<br />
+
+<p class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+
+<br />
+
+<table class="table table-striped table-hover">
     <thead>
-        <tr>
+        <tr class="text-center">
             <th>
-                @Html.DisplayNameFor(model => model.flightID)
+                Flight ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.seatID)
+                Seat ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.purchasedOn)
+                Purchased On
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
+@foreach (var item in Model)
+{
+    <tr class="text-center">
+        <td>
+            <a asp-controller="Flights" asp-action="Details" asp-route-id="@item.flightID">
                 @Html.DisplayFor(modelItem => item.flightID)
-            </td>
-            <td>
+            </a>
+        </td>
+        <td>
+            <a asp-controller="Seats" asp-action="Details" asp-route-id="@item.seatID">
                 @Html.DisplayFor(modelItem => item.seatID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.purchasedOn)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ticketID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ticketID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ticketID">Delete</a>
-            </td>
-        </tr>
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.purchasedOn)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.ticketID" class="btn btn-primary">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ticketID" class="btn btn-info">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ticketID" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
 }
     </tbody>
 </table>

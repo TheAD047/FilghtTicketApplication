@@ -4,45 +4,56 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="text-center">Details</h1>
+
+<br />
 
 <div>
     <h4>Flight</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.airlineName)
+            Flight Name
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.airlineName)
+            @Html.DisplayFor(model => model.flightName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.departureDate)
+            Airline
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.airline.airlineName)
+        </dd>
+        <dt class = "col-sm-2">
+            Departure
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.departureDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.landingTime)
+            Landing
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.landingTime)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.departureFrom)
+            From
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.departureFrom)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.arrivalAt)
+            To
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.arrivalAt)
         </dd>
     </dl>
 </div>
+
+<br />
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.flightID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.flightID" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>

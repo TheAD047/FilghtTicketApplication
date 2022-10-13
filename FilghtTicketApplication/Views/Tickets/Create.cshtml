@@ -4,35 +4,36 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-center">Create A Ticket</h1>
 
-<h4>Ticket</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="flightID" class="control-label"></label>
-                <input asp-for="flightID" class="form-control" />
-                <span asp-validation-for="flightID" class="text-danger"></span>
+                <label asp-for="flightID" class="control-label">Fligth ID</label>
+                <select asp-for="flightID" class ="form-control" asp-items="ViewBag.flightID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="seatID" class="control-label"></label>
+                <label asp-for="seatID" class="control-label">Seat ID</label>
                 <input asp-for="seatID" class="form-control" />
                 <span asp-validation-for="seatID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="purchasedOn" class="control-label"></label>
+                <label asp-for="purchasedOn" class="control-label">Purchased ON</label>
                 <input asp-for="purchasedOn" class="form-control" />
                 <span asp-validation-for="purchasedOn" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
+<br />
 
 <div>
     <a asp-action="Index">Back to List</a>

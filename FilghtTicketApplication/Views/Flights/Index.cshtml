@@ -4,50 +4,62 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="text-center text-light">Flights</h1>
+<h1 class="text-center">Flights</h1>
+
+<br />
 
 <p class="text-center">
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a> | 
+    <a asp-controller="Airlines" asp-action="Index" class="btn btn-primary">Airlines</a>
 </p>
-<table class="table">
+
+<br />
+
+<table class="table table-striped table-hover">
     <thead>
-        <tr>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.airlineName)
+        <tr class="text-center">
+            <th>
+                Flight Name
             </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.departureDate)
+            <th>
+                Airline
             </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.landingTime)
+            <th>
+                Departure
             </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.departureFrom)
+            <th>
+                Landing
             </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.arrivalAt)
+            <th>
+                From
             </th>
-            <th class="text-light">
+            <th>
+                To
+            </th>
+            <th> 
                 Actions
             </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td class="text-info">
-                @Html.DisplayFor(modelItem => item.airlineName)
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.flightName)
             </td>
-            <td class="text-info">
+            <td>
+                @Html.DisplayFor(modelItem => item.airline.airlineName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.departureDate)
             </td>
-            <td class="text-info">
+            <td>
                 @Html.DisplayFor(modelItem => item.landingTime)
             </td>
-            <td class="text-info">
+            <td>
                 @Html.DisplayFor(modelItem => item.departureFrom)
             </td>
-            <td class="text-info">
+            <td>
                 @Html.DisplayFor(modelItem => item.arrivalAt)
             </td>
             <td>

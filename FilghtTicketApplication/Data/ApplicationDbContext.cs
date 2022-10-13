@@ -13,5 +13,6 @@ namespace FilghtTicketApplication.Data
         public DbSet<FilghtTicketApplication.Models.Flight> Flight { get; set; }
         public DbSet<FilghtTicketApplication.Models.Seat> Seat { get; set; }
         public DbSet<FilghtTicketApplication.Models.Ticket> Ticket { get; set; }
+        public DbSet<FilghtTicketApplication.Models.Airline> Airline { get; set; }
     }
 }

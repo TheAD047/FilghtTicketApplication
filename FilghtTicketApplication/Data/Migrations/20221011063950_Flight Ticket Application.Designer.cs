@@ -4,6 +4,7 @@ using FilghtTicketApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,37 +12,17 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilghtTicketApplication.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221011063950_Flight Ticket Application")]
+    partial class FlightTicketApplication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("FilghtTicketApplication.Models.Airline", b =>
-                {
-                    b.Property<int>("airlineID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("airlineID"), 1L, 1);
-
-                    b.Property<string>("airlineEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("airlineName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("airlineID");
-
-                    b.ToTable("Airline");
-                });
 
             modelBuilder.Entity("FilghtTicketApplication.Models.Flight", b =>
                 {
@@ -51,8 +32,9 @@ namespace FilghtTicketApplication.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("flightID"), 1L, 1);
 
-                    b.Property<int>("airlineID")
-                        .HasColumnType("int");
+                    b.Property<string>("airlineName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("arrivalAt")
                         .IsRequired()
@@ -74,8 +56,6 @@ namespace FilghtTicketApplication.Data.Migrations
 
                     b.HasKey("flightID");
 
-                    b.HasIndex("airlineID");
-
                     b.ToTable("Flight");
                 });
 
@@ -89,9 +69,6 @@ namespace FilghtTicketApplication.Data.Migrations
 
                     b.Property<int>("flightID")
                         .HasColumnType("int");
-
-                    b.Property<bool>("isBooked")
-                        .HasColumnType("bit");
 
                     b.Property<int>("seatNum")
                         .HasColumnType("int");
@@ -328,17 +305,6 @@ namespace FilghtTicketApplication.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("FilghtTicketApplication.Models.Flight", b =>
-                {
-                    b.HasOne("FilghtTicketApplication.Models.Airline", "airline")
-                        .WithMany()
-                        .HasForeignKey("airlineID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("airline");
                 });
 
             modelBuilder.Entity("FilghtTicketApplication.Models.Seat", b =>

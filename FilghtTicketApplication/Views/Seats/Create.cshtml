@@ -4,28 +4,33 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-center">Create A Seat</h1>
 
-<h4>Seat</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="flightID" class="control-label"></label>
+                <label asp-for="flightID" class="control-label">Flight</label>
                 <select asp-for="flightID" class ="form-control" asp-items="ViewBag.flightID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="seatNum" class="control-label"></label>
+                <label asp-for="seatNum" class="control-label">Seat Number</label>
                 <input asp-for="seatNum" class="form-control" />
                 <span asp-validation-for="seatNum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="seatRow" class="control-label"></label>
+                <label asp-for="seatRow" class="control-label">Seat row</label>
                 <input asp-for="seatRow" class="form-control" />
                 <span asp-validation-for="seatRow" class="text-danger"></span>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isBooked" /> @Html.DisplayNameFor(model => model.isBooked)
+                </label>
+            </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -33,8 +38,10 @@
     </div>
 </div>
 
+<br />
+
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>
 
 @section Scripts {

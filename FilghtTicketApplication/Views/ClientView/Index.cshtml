@@ -10,22 +10,24 @@
     <form class="form">
         <div class="row">
             <div class="form-group col-md-6">
-                <input type="text" class="form-control bg-dark text-light" id="From" name="From" placeholder="From:" />
+                <input type="text" class="form-control" id="From" name="From" placeholder="From:" />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control bg-dark text-light" id="To" name="To" placeholder="To:" />
+                <input type="text" class="form-control" id="To" name="To" placeholder="To:" />
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" style="align-content: center;">Search</button>
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
 
 
-@foreach(var item in Model) {
+@foreach (var item in Model)
+{
+
     <hr class="text-light">
-    <div class="card bg-dark rounded-pill" id="flight-view-client" style="border-color:aliceblue;">
-        <a asp-controller="Client" asp-action="Checkout" class="card-body rounded-pill" style="width: inherit; text-decoration: none;">
-                <h2 class="card-title text-warning">@Html.DisplayFor(modelItem => item.airlineName)</h2>
+    <div class="card bg-dark" id="flights">
+        <a asp-controller="ClientView" asp-action="Checkout" class="card-body rounded-pill" style="width: inherit; text-decoration: none;">
+            <h2 class="card-title text-warning">@Html.DisplayFor(Item => item.airline.airlineName)</h2>
             <div class="row">
                 <p class="col-md-6 text-info">From: @Html.DisplayFor(modelItem => item.departureFrom)</p>
                 <p class="col-md-6 text-info">Departure: @Html.DisplayFor(modelItem => item.departureDate)</p>

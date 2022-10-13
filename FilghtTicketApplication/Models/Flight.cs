@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace FilghtTicketApplication.Models
 {
@@ -7,7 +8,12 @@ namespace FilghtTicketApplication.Models
         public int? flightID { get; set; }
 
         [Required]
-        public string? airlineName { get; set; }
+        public string? flightName { get; set; }
+
+        [Required]
+        public int airlineID { get; set; }
+
+        public Airline airline { get; set; }
 
         [Required]
         public DateTime departureDate { get; set; }
@@ -23,5 +29,6 @@ namespace FilghtTicketApplication.Models
 
         //ref list of seats in a flight
         public List<Seat>? seats { get; set; }
+
     }
 }

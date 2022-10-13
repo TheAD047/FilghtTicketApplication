@@ -22,7 +22,8 @@ namespace FilghtTicketApplication.Controllers
         // GET: Tickets
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Ticket.ToListAsync());
+            var applicationDbContext = _context.Ticket.Include(t => t.flight);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Tickets/Details/5
@@ -34,6 +35,7 @@ namespace FilghtTicketApplication.Controllers
             }
 
             var ticket = await _context.Ticket
+                .Include(t => t.flight)
                 .FirstOrDefaultAsync(m => m.ticketID == id);
             if (ticket == null)
             {
@@ -46,6 +48,7 @@ namespace FilghtTicketApplication.Controllers
         // GET: Tickets/Create
         public IActionResult Create()
         {
+            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName");
             return View();
         }
 
@@ -62,6 +65,7 @@ namespace FilghtTicketApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", ticket.flightID);
             return View(ticket);
         }
 
@@ -78,6 +82,7 @@ namespace FilghtTicketApplication.Controllers
             {
                 return NotFound();
             }
+            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", ticket.flightID);
             return View(ticket);
         }
 
@@ -113,6 +118,7 @@ namespace FilghtTicketApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", ticket.flightID);
             return View(ticket);
         }
 
@@ -125,6 +131,7 @@ namespace FilghtTicketApplication.Controllers
             }
 
             var ticket = await _context.Ticket
+                .Include(t => t.flight)
                 .FirstOrDefaultAsync(m => m.ticketID == id);
             if (ticket == null)
             {

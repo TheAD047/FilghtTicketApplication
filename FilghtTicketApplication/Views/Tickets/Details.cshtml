@@ -4,33 +4,40 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="text-center">Details</h1>
 
 <div>
     <h4>Ticket</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.flightID)
+            Flight Name
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.flightID)
+            <a asp-controller="Flights" asp-action="Details" asp-route-id="@Model.flightID">
+                @Html.DisplayFor(model => model.flight.flightName)
+            </a>
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.seatID)
+            Seat ID
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.seatID)
+            <a asp-controller="Seats" asp-action="Details" asp-route-id="@Model.seatID">
+                @Html.DisplayFor(model => model.seatID)
+            </a>      
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.purchasedOn)
+            Purchased On
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.purchasedOn)
         </dd>
     </dl>
 </div>
+
+<br />
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ticketID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.ticketID" class="btn b btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-info">Back to List</a>
 </div>

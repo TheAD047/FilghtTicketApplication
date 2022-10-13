@@ -10,90 +10,85 @@ using FilghtTicketApplication.Models;
 
 namespace FilghtTicketApplication.Controllers
 {
-    public class SeatsController : Controller
+    public class AirlinesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public SeatsController(ApplicationDbContext context)
+        public AirlinesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Seats
+        // GET: Airlines
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Seat.Include(s => s.Flight);
-            return View(await applicationDbContext.ToListAsync());
+              return View(await _context.Airline.ToListAsync());
         }
 
-        // GET: Seats/Details/5
+        // GET: Airlines/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Seat == null)
+            if (id == null || _context.Airline == null)
             {
                 return NotFound();
             }
 
-            var seat = await _context.Seat
-                .Include(s => s.Flight)
-                .FirstOrDefaultAsync(m => m.seatID == id);
-            if (seat == null)
+            var airline = await _context.Airline
+                .FirstOrDefaultAsync(m => m.airlineID == id);
+            if (airline == null)
             {
                 return NotFound();
             }
 
-            return View(seat);
+            return View(airline);
         }
 
-        // GET: Seats/Create
+        // GET: Airlines/Create
         public IActionResult Create()
         {
-            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName");
             return View();
         }
 
-        // POST: Seats/Create
+        // POST: Airlines/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("seatID,flightID,seatNum,seatRow,isBooked")] Seat seat)
+        public async Task<IActionResult> Create([Bind("airlineID,airlineName,airlineEmail")] Airline airline)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(seat);
+                _context.Add(airline);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", seat.flightID);
-            return View(seat);
+            return View(airline);
         }
 
-        // GET: Seats/Edit/5
+        // GET: Airlines/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Seat == null)
+            if (id == null || _context.Airline == null)
             {
                 return NotFound();
             }
 
-            var seat = await _context.Seat.FindAsync(id);
-            if (seat == null)
+            var airline = await _context.Airline.FindAsync(id);
+            if (airline == null)
             {
                 return NotFound();
             }
-            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", seat.flightID);
-            return View(seat);
+            return View(airline);
         }
 
-        // POST: Seats/Edit/5
+        // POST: Airlines/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("seatID,flightID,seatNum,seatRow,isBooked")] Seat seat)
+        public async Task<IActionResult> Edit(int id, [Bind("airlineID,airlineName,airlineEmail")] Airline airline)
         {
-            if (id != seat.seatID)
+            if (id != airline.airlineID)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace FilghtTicketApplication.Controllers
             {
                 try
                 {
-                    _context.Update(seat);
+                    _context.Update(airline);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SeatExists(seat.seatID))
+                    if (!AirlineExists(airline.airlineID))
                     {
                         return NotFound();
                     }
@@ -118,51 +113,49 @@ namespace FilghtTicketApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", seat.flightID);
-            return View(seat);
+            return View(airline);
         }
 
-        // GET: Seats/Delete/5
+        // GET: Airlines/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Seat == null)
+            if (id == null || _context.Airline == null)
             {
                 return NotFound();
             }
 
-            var seat = await _context.Seat
-                .Include(s => s.Flight)
-                .FirstOrDefaultAsync(m => m.seatID == id);
-            if (seat == null)
+            var airline = await _context.Airline
+                .FirstOrDefaultAsync(m => m.airlineID == id);
+            if (airline == null)
             {
                 return NotFound();
             }
 
-            return View(seat);
+            return View(airline);
         }
 
-        // POST: Seats/Delete/5
+        // POST: Airlines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Seat == null)
+            if (_context.Airline == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Seat'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Airline'  is null.");
             }
-            var seat = await _context.Seat.FindAsync(id);
-            if (seat != null)
+            var airline = await _context.Airline.FindAsync(id);
+            if (airline != null)
             {
-                _context.Seat.Remove(seat);
+                _context.Airline.Remove(airline);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SeatExists(int id)
+        private bool AirlineExists(int id)
         {
-          return _context.Seat.Any(e => e.seatID == id);
+          return _context.Airline.Any(e => e.airlineID == id);
         }
     }
 }

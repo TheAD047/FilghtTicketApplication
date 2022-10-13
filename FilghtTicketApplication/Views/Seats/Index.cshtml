@@ -4,36 +4,64 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Seats</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<br />
+
+<p class="text-center">
+    <a asp-action="Create" class="btn btn-primary">Create New</a> | 
+    <a asp-controller="Fligths" asp-action="Index" class="btn btn-primary">Flights</a>
 </p>
-<table class="table">
+
+<br />
+
+<table class="table table-striped table-hover">
     <thead>
-        <tr>
+        <tr class="text-center">
             <th>
-                @Html.DisplayNameFor(model => model.seatNum)
+                Fligth ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.seatRow)
+                Flight Name
             </th>
-            <th></th>
+            <th>
+                Seat number
+            </th>
+            <th>
+                Seat Rwo
+            </th>
+            <th>
+                Booked status
+            </th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="text-center">
+            <td>
+            <a asp-controller="Flights" asp-action="Details" asp-route-id="@item.flightID">
+                @Html.DisplayFor(modelItem => item.Flight.flightID)
+            </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.flightName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.seatNum)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.seatRow)
             </td>
+            <td class="text-primary">
+                @Html.DisplayFor(modelItem => item.isBooked)
+            </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.seatID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.seatID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.seatID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.seatID" class="btn btn-primary">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.seatID" class="btn btn-info">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.seatID" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

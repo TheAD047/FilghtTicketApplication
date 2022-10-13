@@ -22,7 +22,8 @@ namespace FilghtTicketApplication.Controllers
         // GET: Flights
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Flight.ToListAsync());
+            var applicationDbContext = _context.Flight.Include(f => f.airline);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Flights/Details/5
@@ -34,6 +35,7 @@ namespace FilghtTicketApplication.Controllers
             }
 
             var flight = await _context.Flight
+                .Include(f => f.airline)
                 .FirstOrDefaultAsync(m => m.flightID == id);
             if (flight == null)
             {
@@ -46,6 +48,7 @@ namespace FilghtTicketApplication.Controllers
         // GET: Flights/Create
         public IActionResult Create()
         {
+            ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineName");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace FilghtTicketApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("flightID,airlineName,departureDate,landingTime,departureFrom,arrivalAt")] Flight flight)
+        public async Task<IActionResult> Create([Bind("flightID,flightName,airlineID,departureDate,landingTime,departureFrom,arrivalAt")] Flight flight)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace FilghtTicketApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineName", flight.airlineID);
             return View(flight);
         }
 
@@ -78,6 +82,7 @@ namespace FilghtTicketApplication.Controllers
             {
                 return NotFound();
             }
+            ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineName", flight.airlineID);
             return View(flight);
         }
 
@@ -86,7 +91,7 @@ namespace FilghtTicketApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int? id, [Bind("flightID,airlineName,departureDate,landingTime,departureFrom,arrivalAt")] Flight flight)
+        public async Task<IActionResult> Edit(int? id, [Bind("flightID,flightName,airlineID,departureDate,landingTime,departureFrom,arrivalAt")] Flight flight)
         {
             if (id != flight.flightID)
             {
@@ -113,6 +118,7 @@ namespace FilghtTicketApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineEmail", flight.airlineID);
             return View(flight);
         }
 
@@ -125,6 +131,7 @@ namespace FilghtTicketApplication.Controllers
             }
 
             var flight = await _context.Flight
+                .Include(f => f.airline)
                 .FirstOrDefaultAsync(m => m.flightID == id);
             if (flight == null)
             {
