@@ -1,3 +1,4 @@
+<html>    
     <h1>Easy Flights</h1>
     <br />
     <p>Welcome To Easy Flights one stop store for buying flight tickets</p>
@@ -10,3 +11,4 @@
     <p>Link to the live Website: <a href="https://flightticket.azurewebsites.net">Easy Flights</a> </p>
     <p>This was made as a part of COMP2084 course in Georgian College</p>
     <p>All the data seen here is to show the functionality of the web app only!!</p>
+</html>
