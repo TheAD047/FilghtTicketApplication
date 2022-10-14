@@ -18,5 +18,16 @@ namespace FilghtTicketApplication.Controllers
             var applicationDbContext = _context.Flight.Include(f => f.airline);
             return View(await applicationDbContext.ToListAsync());
         }
+
+        public async Task<IActionResult> Seats(int? ID)
+        {
+            var applicationDbContext = _context.Seat
+                                               .OrderBy(s => s.seatRow)
+                                               .OrderBy(s => s.seatNum)
+                                               .Include(s => s.Flight)
+                                               .Include(s => s.Flight.airline)
+                                               .Where(s => s.flightID == ID);
+            return View(await applicationDbContext.ToListAsync());
+        }
     }
 }

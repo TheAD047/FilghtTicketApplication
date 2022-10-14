@@ -22,7 +22,7 @@ namespace FilghtTicketApplication.Controllers
         // GET: Seats
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Seat.Include(s => s.Flight);
+            var applicationDbContext = _context.Seat.Include(s => s.Flight).Include(s => s.Flight.airline);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace FilghtTicketApplication.Controllers
 
             var seat = await _context.Seat
                 .Include(s => s.Flight)
+                .Include(s => s.Flight.airline)
                 .FirstOrDefaultAsync(m => m.seatID == id);
             if (seat == null)
             {

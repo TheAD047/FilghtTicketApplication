@@ -20,6 +20,12 @@
                 @Html.DisplayFor(model => model.Flight.flightName)
             </a>
         </dd>
+        <dt class="col-sm-2">
+            Airline Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Flight.airline.airlineName)
+        </dd>
         <dt class = "col-sm-2">
             Seat Number
         </dt>

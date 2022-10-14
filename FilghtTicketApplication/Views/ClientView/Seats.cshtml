@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FilghtTicketApplication.Models.Seat>
+
+@{
+    ViewData["Title"] = "Seats";
+}
+
+<h1 class="text-center">Select A Seat</h1>
+
+<br />
+
+<div class="row">
+    @foreach(var item in Model) {
+        @if (!item.isBooked)
+        {
+            <a asp-action="Checkout" id="seatCard" class="text-center col-md-1">
+                <h4>@Html.DisplayFor(modelItem => item.seatRow)  @Html.DisplayFor(modelItem => item.seatNum)</h4>
+            </a>
+        }
+        else {
+            <div class="text-center col-md-1" id="seatCardMuted">
+                <h4 class="text-muted">@Html.DisplayFor(modelItem => item.seatRow)  @Html.DisplayFor(modelItem => item.seatNum)</h4>
+            </div>
+        }
+    }
+</div>

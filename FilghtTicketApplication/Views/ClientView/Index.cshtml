@@ -4,8 +4,9 @@
     ViewData["Title"] = "Available Flights";
 }
 
-<h1 class="text-center text-light">See Available Flights</h1>
 
+<div id="clientBG">
+    <h1 class="text-center text-light">See Available Flights</h1>
 <div class="container">
     <form class="form">
         <div class="row">
@@ -26,7 +27,7 @@
 
     <hr class="text-light">
     <div class="card bg-dark" id="cardBody">
-        <a asp-controller="ClientView" asp-action="Checkout" class="card-body" id="flightCard">
+        <a asp-controller="ClientView" asp-action="Seats" asp-route-id="@item.flightID" class="card-body" id="flightCard">
             <h2 class="card-title text-warning">@Html.DisplayFor(Item => item.airline.airlineName)</h2>
             <div class="row">
                 <p class="col-md-6 text-info">From: @Html.DisplayFor(modelItem => item.departureFrom)</p>
@@ -41,3 +42,4 @@
 }
 <hr class="text-light">
 
+</div>
