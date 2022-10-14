@@ -28,6 +28,15 @@ a{
     color:aliceblue;
 }
 
+p{
+    color:aliceblue;
+}
+
+a:hover {
+    cursor: pointer;
+    color: blue;
+}
+
 h1, h2, h4, p {
     color: aliceblue;
 }
