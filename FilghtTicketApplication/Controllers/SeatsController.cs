@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FilghtTicketApplication.Data;
 using FilghtTicketApplication.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace FilghtTicketApplication.Controllers
 {
+    [Authorize(Roles = ("ADMIN"))]
     public class SeatsController : Controller
     {
         private readonly ApplicationDbContext _context;

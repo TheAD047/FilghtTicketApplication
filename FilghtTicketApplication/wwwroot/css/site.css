@@ -1,5 +1,6 @@
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -9,8 +10,8 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 
@@ -20,13 +21,25 @@ th {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+
+}
+
+body > div > main{
+    height: 80%;
+}
+
+.side-bar {
+    height: 80vh;
+    border-block-end: thick;
 }
 
 a{
     text-decoration: none;
     color:aliceblue;
 }
+
+
 
 p{
     color:aliceblue;
@@ -126,4 +139,23 @@ btn-danger:hover {
     width: fit-content;
     border-color: antiquewhite;
     border-radius: 3rem;
+}
+
+.
+
+.side-bar {
+    background-color: #000ff0;
+    width: 20vw;
+}
+
+.col-content {
+    width: 75vw;
+}
+
+.row-content {
+    width: 100vw;
+}
+
+.side-item:hover {
+    background-color: rgb(50, 50, 25);
 }
