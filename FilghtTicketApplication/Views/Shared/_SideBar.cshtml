@@ -1,0 +1,27 @@
+﻿
+<div class="col-2 bg-dark side-bar">
+    <div class="container-lg mt-2">
+        <h4>
+            <a class="text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name.Substring(0, User.Identity.Name.IndexOf('@'))</a>
+        </h4>
+        <h6 class="text-muted">Admin</h6>
+        <hr class="text-light" />
+        <ul class="nav nav-pills flex-column">
+            <li class="border-bottom side-item">
+                <a class="nav-link text-light mt-2" asp-area="" asp-controller="Flights" asp-action="Index">Flights</a>
+            </li>
+            <li class="border-bottom side-item">
+                <a class="nav-link text-light mt-2" asp-area="" asp-controller="Seats" asp-action="index">Seats</a>
+            </li>
+            <li class="border-bottom side-item">
+                <a class="nav-link text-light mt-2" asp-area="" asp-controller="Tickets" asp-action="index">Tickets</a>
+            </li>
+            <li class="border-bottom side-item">
+                <a class="nav-link text-light mt-2" asp-area="" asp-controller="Airlines" asp-action="index">Airlines</a>
+            </li>
+            <li class="border-bottom side-item">
+                <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/RegisterAdmin">Register A New Admin</a>
+            </li>
+        </ul>
+    </div>
+</div>

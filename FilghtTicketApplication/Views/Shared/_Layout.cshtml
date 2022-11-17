@@ -34,30 +34,7 @@
 
     @if(User.IsInRole("ADMIN")) {
         <div class="row row-content">
-            <div class="col-2 bg-dark side-bar">
-                <div class="container-lg mt-2">
-                    <h4>@User.Identity.Name.Substring(0, User.Identity.Name.IndexOf('@'))</h4>
-                    <h6 class="text-muted">Admin</h6>
-                    <hr class="text-light" />
-                    <ul>
-                        <li class="border-bottom side-item">
-                            <a class="nav-link text-light mt-2" asp-area="" asp-controller="Flights" asp-action="Index">Flights</a>
-                        </li>
-                        <li class="border-bottom side-item">
-                            <a class="nav-link text-light mt-2" asp-area="" asp-controller="Seats" asp-action="index">Seats</a>
-                        </li>
-                        <li class="border-bottom side-item">
-                            <a class="nav-link text-light mt-2" asp-area="" asp-controller="Tickets" asp-action="index">Tickets</a>
-                        </li>
-                        <li class="border-bottom side-item">
-                            <a class="nav-link text-light mt-2" asp-area="" asp-controller="Airlines" asp-action="index">Airlines</a>
-                        </li>
-                        <li class="border-bottom side-item">
-                            <a class="nav-link text-light mt-2" asp-area="Identity" asp-action="/Accounts/RegisterAdmin">Register a new Admin</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <partial name="_SideBar" />
             <div class="col-content">
                 <div class="container-sm">
                     <main role="main" class="pb-3">

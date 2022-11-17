@@ -1,7 +1,3 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,20 +17,21 @@ using Microsoft.Extensions.Logging;
 
 namespace FilghtTicketApplication.Areas.Identity.Pages.Account
 {
-    public class RegisterModel : PageModel
+    [Authorize(Roles = "ADMIN")]
+    public class RegisterAdminModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<RegisterAdminModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public RegisterAdminModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
-            ILogger<RegisterModel> logger,
+            ILogger<RegisterAdminModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -120,7 +117,7 @@ namespace FilghtTicketApplication.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Customer");
+                    await _userManager.AddToRoleAsync(user, "ADMIN");
 
                     _logger.LogInformation("User created a new account with password.");
 
