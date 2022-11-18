@@ -16,6 +16,9 @@ namespace FilghtTicketApplication.Controllers
     public class SeatsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private String[] rows = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+                                 "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V" ,
+                                 "W", "X", "Y", "Z"};
 
         public SeatsController(ApplicationDbContext context)
         {
@@ -71,6 +74,41 @@ namespace FilghtTicketApplication.Controllers
             }
             ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName", seat.flightID);
             return View(seat);
+        }
+
+        public IActionResult GenerateSeats()
+        {
+            ViewData["flightID"] = new SelectList(_context.Flight, "flightID", "flightName");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GenerateSeats(int flightID, int numOfRows, int numOfSeatsInArow)
+        {
+            var list = _context.Flight.Where(f => f.flightID == flightID);
+            if (list.Any() && numOfRows > 0 && numOfRows <= 26 && numOfSeatsInArow > 0)
+            {
+                for (int i = 0; i < numOfRows; i++)
+                {
+                    for (int j = 0; j < numOfSeatsInArow; j++)
+                    {
+                        Seat seat = new Seat();
+                        seat.flightID = flightID;
+                        seat.seatNum = j + 1;
+                        seat.seatRow = rows[i];
+                        seat.isBooked = false;
+
+                        _context.Add(seat);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return GenerateSeats();
+            }
         }
 
         // GET: Seats/Edit/5

@@ -1,5 +1,38 @@
-﻿@page
-@model FilghtTicketApplication.Views.Seats.Index1Model
+﻿@model FilghtTicketApplication.Models.Seat
+
 @{
     ViewData["Title"] = "Generate Seats";
 }
+
+<h1 class="text-center">Generate Seats</h1>
+<br />
+<div class="row">
+    <div class="col-lg-6">
+        <form action="/Seats/GenerateSeats" method="post">
+            <div class="form-group">
+                <label asp-for="flightID" class="control-label">Flight</label>
+                <select asp-for="flightID" class="form-control" asp-items="ViewBag.flightID"></select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="numOfRows">Number of Rows</label>
+                <input class="form-control" type="number" id="numOfRows" name="numOfRows" required />
+            </div>
+            <br />
+            <div>
+                <label for="numOfSeatsInARow">Number of Seats in a row</label>
+                <input class="form-control" type="number" id="numOfSeatsInARow" name="numOfSeatsInARow" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

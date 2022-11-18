@@ -125,7 +125,6 @@ btn-danger:hover {
 }
 
 #seatCard {
-    width:fit-content;
     border-color:antiquewhite;
     border-width: 2rem;
     border-radius: 1rem;

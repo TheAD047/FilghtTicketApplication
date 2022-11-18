@@ -22,8 +22,8 @@ namespace FilghtTicketApplication.Controllers
         public async Task<IActionResult> Seats(int? ID)
         {
             var applicationDbContext = _context.Seat
-                                               .OrderBy(s => s.seatRow)
                                                .OrderBy(s => s.seatNum)
+                                               .OrderBy(s => s.seatRow)
                                                .Include(s => s.Flight)
                                                .Include(s => s.Flight.airline)
                                                .Where(s => s.flightID == ID);
