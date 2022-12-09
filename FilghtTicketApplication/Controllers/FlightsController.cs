@@ -26,7 +26,7 @@ namespace FilghtTicketApplication.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Flight.Include(f => f.airline);
-            return View(await applicationDbContext.ToListAsync());
+            return View("Index", await applicationDbContext.ToListAsync());
         }
 
         // GET: Flights/Details/5
@@ -34,7 +34,7 @@ namespace FilghtTicketApplication.Controllers
         {
             if (id == null || _context.Flight == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var flight = await _context.Flight
@@ -42,17 +42,17 @@ namespace FilghtTicketApplication.Controllers
                 .FirstOrDefaultAsync(m => m.flightID == id);
             if (flight == null)
             {
-                return NotFound();
+                return View("404"); ;
             }
 
-            return View(flight);
+            return View("Details", flight);
         }
 
         // GET: Flights/Create
         public IActionResult Create()
         {
             ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineName");
-            return View();
+            return View("Create");
         }
 
         // POST: Flights/Create
@@ -77,16 +77,16 @@ namespace FilghtTicketApplication.Controllers
         {
             if (id == null || _context.Flight == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var flight = await _context.Flight.FindAsync(id);
             if (flight == null)
             {
-                return NotFound();
+                return View("404");
             }
             ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineName", flight.airlineID);
-            return View(flight);
+            return View("Edit", flight);
         }
 
         // POST: Flights/Edit/5
@@ -98,7 +98,7 @@ namespace FilghtTicketApplication.Controllers
         {
             if (id != flight.flightID)
             {
-                return NotFound();
+                return View("404");
             }
 
             if (ModelState.IsValid)
@@ -112,7 +112,7 @@ namespace FilghtTicketApplication.Controllers
                 {
                     if (!FlightExists(flight.flightID))
                     {
-                        return NotFound();
+                        return View("404");
                     }
                     else
                     {
@@ -122,7 +122,7 @@ namespace FilghtTicketApplication.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["airlineID"] = new SelectList(_context.Set<Airline>(), "airlineID", "airlineEmail", flight.airlineID);
-            return View(flight);
+            return View("Edit", flight);
         }
 
         // GET: Flights/Delete/5
